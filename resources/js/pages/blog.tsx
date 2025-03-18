@@ -18,7 +18,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-const Blog01Page = () => {
+const Blog01Page = ({ events }: { events: {id: number, title: string, content: string; published: boolean}[] }) => {
   return (
       <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
@@ -38,8 +38,8 @@ const Blog01Page = () => {
       </div>
 
       <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
-          <Card key={i} className="shadow-none">
+        {events.map((event) => (
+          <Card key={event.id} className="shadow-none">
             <CardHeader className="p-2">
               <div className="aspect-video bg-muted rounded-lg w-full" />
             </CardHeader>
@@ -47,7 +47,7 @@ const Blog01Page = () => {
               <Badge>Technology</Badge>
 
               <h3 className="mt-4 text-[1.35rem] font-semibold tracking-tight">
-                What is the future of web development?
+               {event.title}
               </h3>
               <div className="mt-6 flex items-center justify-between">
                 <div className="flex items-center gap-2">
